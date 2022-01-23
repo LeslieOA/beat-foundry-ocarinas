@@ -44,10 +44,10 @@ function getOcarinas() {
 		getContractTokenURI(tokenId)
 			.then(data => {
 				const dataType = data.split(',')[0]
-				const metaData = JSON.parse((new Buffer.from(data.split(',')[1], 'base64')).toString('ascii'))
+				const metaData = JSON.parse((new Buffer.from(data.split(",")[1], "base64")).toString('ascii'))
 				const { name, description, image, animation_url, audio } = metaData
 
-				const midiFileBuffer = new Buffer.from(audio.split(',')[1], 'base64')
+				const midiFileBuffer = new Buffer.from(audio.split(",")[1], "base64")
 
 				if (!fs.existsSync(midiFolder)) fs.mkdirSync(midiFolder)
 
