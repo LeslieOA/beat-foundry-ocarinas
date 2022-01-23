@@ -14,6 +14,10 @@ const provider = new ethers.providers.FallbackProvider([
 let tokenId = 0
 const midiFolder = './songs/'
 
+if (!fs.existsSync(midiFolder)) fs.mkdirSync(midiFolder)
+
+
+
 /**
  * Beat Foundry Ocarinas Contract
  */
@@ -48,11 +52,15 @@ function getOcarinas() {
 				const { name, description, image, animation_url, audio } = metaData
 
 				const midiFileBuffer = new Buffer.from(audio.split(",")[1], "base64")
+				const midiFilePath = `${midiFolder}${name}.mid`
 
-				if (!fs.existsSync(midiFolder)) fs.mkdirSync(midiFolder)
-
-				console.log(`Downloading: ${midiFolder}${name}.mid`)
-				fs.writeFileSync(`${midiFolder}${name}.mid`, midiFileBuffer)
+				if (!fs.existsSync(midiFilePath)) {
+					console.log(`Downloading: ${midiFolder}${name}.mid`)
+					fs.writeFileSync(midiFilePath, midiFileBuffer)
+				}
+				else {
+					console.log(`Skipping: ${midiFolder}${name}.mid`)
+				}
 
 			})
 			.then(() => {
