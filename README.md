@@ -17,7 +17,7 @@ Because NFT project assets are usually stored off-chain on IPFS (which is highly
 * Get a free API key from Etherscan: https://info.etherscan.com/etherscan-developer-api-key/ 
 * Copy `.env.example` to `.env`
 * Add your new Etherscan API key as the value of `ETHERSCAN_API_KEY`
-*4.* `npm i`
+* `npm i`
 * `npm start`
 
 
